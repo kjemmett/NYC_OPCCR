@@ -1,0 +1,13 @@
+1. y_data.txt
+    this file contains 318 rows and has columns:
+    uniq_id | age at diagnosis | # days survived
+
+2. 4probe_meth_[uniq_id].txt
+    these are 318 files with 80 rows and columns:
+    probe_id | beta_value | gene
+
+3. Y.pk
+    pandas dataframe object of y_data.txt
+
+4. X.pk
+    pandas dataframe object of all 4probe_meth files

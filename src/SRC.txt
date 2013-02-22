@@ -1,0 +1,25 @@
+1. process_methylation.py
+    script that iterates over methylation profiles and pulls out only
+    relevant probe sets.  relevant is determined by sanger institute
+    spreadsheet which implicates only 4 genes to HNSCC.  reads from
+    an external database of TCGA data and writes to ../dat/
+
+2. raw2pandas_data.py
+    script that reads in txt files from ../dat/ and formats final
+    pandas dataframes for the main components of the data set:
+        - 318 x 80 dataframe which is our X
+        - 318 x 2 dataframe which is our Y
+    these python objects are pickled in ../dat/
+
+3. unsupervised.py
+    script that attempts various embeddings and clusterings of
+    on X.  Y is never invoked in these methods.  output is saved
+    to ../out/
+
+4. supervised.py
+    script that attempts various regressions on the full labeled
+    data set (X,Y).  output is saved to ../out/
+
+5. plot_results.py
+    script that loads results from ../out/ and visualizes KM curves,
+    ROC curves, etc.  figures are saved to ../doc/
