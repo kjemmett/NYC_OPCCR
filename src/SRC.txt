@@ -1,14 +1,15 @@
-1. process_methylation.py
-    script that iterates over methylation profiles and pulls out only
-    relevant probe sets.  relevant is determined by sanger institute
-    spreadsheet which implicates only 4 genes to HNSCC.  reads from
-    an external database of TCGA data and writes to ../dat/
+1. process_expression.py
+    script that first computes which genes are significantly 
+    different in their expression between tumor/normal samples while
+    also having a minimum variance within the tumor population.  only
+    these F genes are admitted into our feature space.  txt files for
+    the N tumor samples are created in ../dat/ containing F rows each.
 
 2. raw2pandas_data.py
     script that reads in txt files from ../dat/ and formats final
     pandas dataframes for the main components of the data set:
-        - 318 x 80 dataframe which is our X
-        - 318 x 2 dataframe which is our Y
+        - N x F dataframe which is our X
+        - N x 1 dataframe which is our Y
     these python objects are pickled in ../dat/
 
 3. unsupervised.py

@@ -1,10 +1,10 @@
 1. y_data.txt
-    this file contains 318 rows and has columns:
-    uniq_id | age at diagnosis | # days survived
+    this file contains 319 rows, including a header row, and has columns:
+    uniq_id | # of days survived following diagnosis
 
-2. 4probe_meth_[uniq_id].txt
-    these are 318 files with 80 rows and columns:
-    probe_id | beta_value | gene
+2. aberrant_genes_[uniq_id].txt
+    these are N files with F rows each and columns:
+    gene symbol | RPKM
 
 3. Y.pk
     pandas dataframe object of y_data.txt
