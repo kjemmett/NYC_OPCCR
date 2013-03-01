@@ -1,4 +1,4 @@
-Pt Barcode	Days Survived
+Pt_Barcode	Days_Survived
 TCGA-CV-6960	861
 TCGA-CV-7090	4380
 TCGA-DQ-5631	548
