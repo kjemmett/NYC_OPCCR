@@ -16,8 +16,8 @@ stats_control = np.zeros((20532,2))
 stats_tumor = np.zeros((20532,5))
 gene_symbols = []
 
-expression_control_dir = '/Users/sakellarios/Documents/04-MD-PhD/5-Research/TCGA/hnscc/expression_control/'
-expression_tumor_dir = '/Users/sakellarios/Documents/04-MD-PhD/5-Research/TCGA/hnscc/expression_tumor/'
+expression_control_dir = '/Users/sakellarios/Documents/DATA/TCGA/hnscc/expression_control/'
+expression_tumor_dir = '/Users/sakellarios/Documents/DATA/TCGA/hnscc/expression_tumor/'
 
 #VERIFY THAT EACH TUMOR EXPRESSION PROFILE ALSO HAS CLINCAL DATA
 #GENERATE LIST OF BARCODES FOR WHICH THERE ARE DUPLICATE EXPRESSION PROFILES
@@ -33,7 +33,7 @@ assert(len(intersect_list) == len(dir_barcodes))
 duplicate_barcodes = [x for x,y in collections.Counter(dir_barcodes).items() if y > 1]
 
 #GENERATE THE LIST OF GENE SYMBOLS USING ONE ARBITRARY FILE
-f_handle = open('/Users/sakellarios/Documents/04-MD-PhD/5-Research/TCGA/hnscc/expression_control/unc.edu__IlluminaHiSeq_RNASeq__TCGA-CV-6934-11A-01R-1915-07__expression_gene.txt','r')
+f_handle = open('/Users/sakellarios/Documents/DATA/TCGA/hnscc/expression_control/unc.edu__IlluminaHiSeq_RNASeq__TCGA-CV-6934-11A-01R-1915-07__expression_gene.txt','r')
 f_handle.readline() #burn a line
 for line in f_handle:
     line_elements = line.split()

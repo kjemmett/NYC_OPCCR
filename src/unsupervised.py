@@ -17,5 +17,5 @@ ax = fig.add_subplot(111, projection = '3d')
 for c, stage in zip("rgby", ['I','II','III','IVA']):
     ax.scatter(dp[y['Stage'] == stage, 0], dp[y['Stage'] == stage,1], dp[y['Stage'] == stage, 2], c=c)
 
-ax.scatter(dp[:,0], dp[:,1], dp[:,2])
+#ax.scatter(dp[:,0], dp[:,1], dp[:,2])
 plt.show()
