@@ -19,8 +19,5 @@
 
 4. supervised.py
     script that attempts various regressions on the full labeled
-    data set (X,Y).  output is saved to ../out/
-
-5. plot_results.py
-    script that loads results from ../out/ and visualizes KM curves,
-    ROC curves, etc.  figures are saved to ../doc/
+    data set (X,Y).  output is saved to ../out/ and figures are saved
+    to ../doc/
