@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt, matplotlib as mpl, pandas as pd, numpy as np, pickle as pk
 from mpl_toolkits.mplot3d import Axes3D
+from sklearn import metrics
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import scale
 
 x = pk.load(open('../dat/X.pk'))
 y = pk.load(open('../dat/Y.pk'))
@@ -14,7 +17,7 @@ plt.xlim(0,10*np.max(y['Age_At_Dx'])/10+10)
 plt.ylim(0,1000*np.max(y['Days_Survived'])/1000+1000)
 plt.xticks(10*np.arange(10))
 plt.savefig('../doc/surv_vs_age.png')
-plt.show()
+plt.clf()
 
 #Histogram of Days_Survived
 fig2 = plt.hist(y['Days_Survived'], bins = 500 * np.arange(0, np.max(y['Days_Survived'])/500 + 1))
@@ -22,7 +25,7 @@ plt.title('Survival')
 plt.xlabel('Survival (days)')
 plt.ylabel('Frequency')
 plt.savefig('../doc/hist_surv.png')
-plt.show()
+plt.clf()
 
 #boxplot of Age_At_Dx by Stage
 stage_IV_diagnosis = pd.concat([y['Age_At_Dx'][y['Stage']=='IVA'],y['Age_At_Dx'][y['Stage']=='IVB']]) #concatenates stages IVA and IVB
@@ -32,7 +35,7 @@ plt.title('Age at Diagnosis by Stage')
 plt.xlabel('Stage')
 plt.ylabel('Age at Diagnosis (years)')
 plt.savefig('../doc/box_age_by_stage.png')
-plt.show()
+plt.clf()
 
 #boxplot of Days_Survived by Stage
 box_IV_survival = pd.concat([y['Days_Survived'][y['Stage']=='IVA'],y['Days_Survived'][y['Stage']=='IVB']]) #concatenates stages IVA and IVB
@@ -42,7 +45,7 @@ plt.title('Survival by Stage')
 plt.xlabel('Stage')
 plt.ylabel('Survival (days)')
 plt.savefig('../doc/box_surv_by_stage.png')
-plt.show()
+plt.clf()
 
 #correlation matrix heatmap
 r = x.corr()
@@ -53,7 +56,7 @@ cmap.set_bad('w')
 fig5 = plt.matshow(r)
 plt.title('Corrleation Matrix Heatmap')
 plt.savefig('../doc/corr_heatmap.png')
-plt.show()
+plt.clf()
 
 #principal component analysis
 pca = mpl.mlab.PCA(x)
@@ -82,4 +85,28 @@ plt.title('Principal Component Analysis')
 plt.xlabel('Component 1')
 plt.ylabel('Component 2')
 plt.savefig('../doc/pca.png')
-plt.show()
+plt.clf()
+
+#K-means
+np.random.seed(42)
+data = np.array(x)
+
+y['Stage'][y['Stage']=='IVA']='IV'
+y['Stage'][y['Stage']=='IVB']='IV'
+y = np.array(y['Stage'])
+target = np.zeros((263,))
+conversion = {'I':1, 'II':2, 'III':3, 'IV':4}
+for i in range(len(y)):
+    try:
+        target[i] = conversion[y[i]]
+    except:
+        target[i] = 4
+
+n_samples, n_features = data.shape
+n_clusters = 4
+labels = target
+
+k_means = KMeans(init='k-means++', n_clusters=n_clusters, n_init=10).fit(data)
+print 'norm =', metrics.normalized_mutual_info_score(labels, k_means.labels_)
+print 'homo =', metrics.homogeneity_score(labels, k_means.labels_)
+
