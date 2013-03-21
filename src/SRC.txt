@@ -13,11 +13,10 @@
     these python objects are pickled in ../dat/
 
 3. unsupervised.py
-    script that attempts various embeddings and clusterings of
-    on X.  Y is never invoked in these methods.  output is saved
-    to ../out/
+    script that performs exploratory data analysis including boxplots,
+    scatter plots, histograms, PCA, and K-means clustering.  all figures
+    are saved to ../doc/
 
 4. supervised.py
-    script that attempts various regressions on the full labeled
-    data set (X,Y).  output is saved to ../out/ and figures are saved
-    to ../doc/
+    script that attempts basic regression and classification on the full
+    labeled data set.

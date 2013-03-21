@@ -1,7 +1,2 @@
-1. figure_1.pdf
-    description of what this figure shows
-
-2. figure_2.pdf
-    description of what this figure shows
-
-
+this directory contains the presentation slides along with
+the figures generated from the source code.

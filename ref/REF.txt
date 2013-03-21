@@ -1,6 +1,2 @@
-1. "title of paper 1"
-    description of why this paper is relevant
-
-2. "title of paper 2"
-    description of why this paper is relevant
-
+this directory contains selected papers from the literature which
+provide useful background for this sort of research project.
