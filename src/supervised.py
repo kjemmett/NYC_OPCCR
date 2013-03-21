@@ -30,24 +30,23 @@ for elem in y['Days_Survived']:
 kfold = cross_validation.KFold(len(x_scaled), n_folds=10)
 
 ##linear regression with regularization 
-linreg = linear_model.Lasso(alpha=10)
-#print cross_validation.cross_val_score(linreg, x_scaled, survival, cv=kfold, n_jobs=-1)
-
-##support vector regression
-svr = svm.SVR()
-svr.fit(x_scaled, survival)
-print metrics.mean_squared_error(stage, svr.predict(x_scaled))
-print metrics.r2_score(stage, svr.predict(x_scaled))
-#print cross_validation.cross_val_score(svr, x_scaled, survival, cv=kfold, n_jobs=-1)
+linreg = linear_model.LinearRegression()
+lasso = linear_model.Lasso(alpha=10)
+print 'Linear Regression R^2 Across CV Folds:'
+print cross_validation.cross_val_score(linreg, x_scaled, survival, cv=kfold, n_jobs=-1)
+print 'Lasso R^2 Across CV Folds:'
+print cross_validation.cross_val_score(lasso, x_scaled, survival, cv=kfold, n_jobs=-1)
 
 ##logistic regression
 logreg = linear_model.LogisticRegression()
 logreg.fit(x_scaled, stage)
-print logreg.score(x_scaled, stage)
+print 'Logistic Score:', logreg.score(x_scaled, stage)
+print 'Confusion Matrix:'
 print metrics.confusion_matrix(stage, logreg.predict(x_scaled))
 
-#support vector classification
-#svc = svm.LinearSVC(penalty='l1',dual=False)
-#svc.fit(x_scaled, stage)
-#print svc.score(x_scaled, stage)
-#print metrics.confusion_matrix(stage, svc.predict(x_scaled))
+##support vector classification
+svc = svm.LinearSVC(penalty='l1',dual=False)
+svc.fit(x_scaled, stage)
+print 'SVC Score:', svc.score(x_scaled, stage)
+print 'Confusion Matrix:'
+print metrics.confusion_matrix(stage, svc.predict(x_scaled))
