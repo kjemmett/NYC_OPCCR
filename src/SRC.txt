@@ -19,4 +19,4 @@
 
 4. supervised.py
     script that attempts basic regression and classification on the full
-    labeled data set.
+    labeled data set. supervised learning involves labeled data.
